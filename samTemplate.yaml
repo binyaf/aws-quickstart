@@ -1,0 +1,31 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  A simple backend (read/write to DynamoDB) with a RESTful API endpoint using
+  Amazon API Gateway.
+Resources:
+  AddHouseholdToQuickStart:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Description: >-
+        A simple backend (read/write to DynamoDB) with a RESTful API endpoint
+        using Amazon API Gateway.
+      MemorySize: 1344
+      Timeout: 30
+      Role: 'arn:aws:iam::997989488986:role/lambda_basic_execution'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: '/qstart/{version}/items'
+            Method: GET
+        Api2:
+          Type: Api
+          Properties:
+            Path: '/qstart/{version}/items'
+            Method: PUT
+      Tags:
+        'lambda-console:blueprint': microservice-http-endpoint

@@ -1,0 +1,29 @@
+Description: A simple backend (read/write to DynamoDB) with a RESTful API endpoint
+  using Amazon API Gateway.
+Resources:
+  AddHouseholdToQuickStart:
+    Properties:
+      CodeUri: s3://contentdiscovery.quickstart.package/383e26b8bf3465f4a8d5d46d60298f44
+      Description: A simple backend (read/write to DynamoDB) with a RESTful API endpoint
+        using Amazon API Gateway.
+      Events:
+        Api1:
+          Properties:
+            Method: GET
+            Path: /qstart/{version}/items
+          Type: Api
+        Api2:
+          Properties:
+            Method: PUT
+            Path: /qstart/{version}/items
+          Type: Api
+      Handler: index.handler
+      MemorySize: 1344
+      Role: arn:aws:iam::997989488986:role/lambda_basic_execution
+      Runtime: nodejs6.10
+      Tags:
+        lambda-console:blueprint: microservice-http-endpoint
+      Timeout: 30
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
+"AWSTemplateFormatVersion": '2010-09-09'
