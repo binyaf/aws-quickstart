@@ -8,9 +8,6 @@ var dynamo = new AWS.DynamoDB();
 let tableName = 'quickStart';
 let NUMBER_OF_QS = 12;
 
-/**
- * Handles the add-qs-to-household API
- */
 exports.handler = (event, context, callback) => {
     console.log('FCID=', event.headers['fcid'], ', Received event:', JSON.stringify(event, null, 2));
 
@@ -139,10 +136,10 @@ exports.handler = (event, context, callback) => {
             Item: {
                 'householdId' : {S: hhid},
                 'channel' : {L: newQuickStartSet},
-        }
-       };
+            }
+        };
 
-        // Call DynamoDB to add the item to the table
+        // Call dynamo to add the item to the DB
         dynamo.putItem(params, function(err, data) {
             if (err) {
                 console.log("Error adding channel to household", err);
@@ -154,13 +151,11 @@ exports.handler = (event, context, callback) => {
     
     function extractHouseholdFromHeader(event) {
             let hhidObj = event.headers['x-cisco-vcs-identity'] ? JSON.parse(event.headers['x-cisco-vcs-identity']) : {};
-            
-            
+                   
             if (! hhidObj.hhId) {
                done(new Error('didn\'t find household in the request')); 
             }
             
             return hhidObj.hhId;
     }
-    
 };
