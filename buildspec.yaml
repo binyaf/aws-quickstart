@@ -2,14 +2,9 @@
 phases:
   install:
     commands:
-      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket contentdiscovery.quickstart.package 
-                                   --output-template-file quickstart-output.yaml
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket contentdiscovery.quickstart.package --output-template-file quickstart-output.yaml
 artifacts:
   type: zip
   files:
     - samTemplate.yaml
     - quickstart-output.yaml
-	
-	
-	
-	
