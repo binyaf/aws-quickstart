@@ -6,7 +6,7 @@ var _ = require('lodash');
 var AWS = require('aws-sdk');
 var dynamo = new AWS.DynamoDB();
 let tableName = 'quickStart';
-let NUMBER_OF_QS = 12; //max number of channels!
+let NUMBER_OF_QS = 12; //max number of channels!!!
 
 exports.handler = (event, context, callback) => {
     console.log('FCID=', event.headers['fcid'], ', Received event:', JSON.stringify(event, null, 2));
